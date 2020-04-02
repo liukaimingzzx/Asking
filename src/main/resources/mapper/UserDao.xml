@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lkm.asking.dao.UserDao">
+    <insert id="insertUser" parameterType="com.lkm.asking.entity.User">
+        insert into user(username,nickname,password)
+        values
+        (#{username},#{nickname},#{password})
+    </insert>
+
+    <select id="userLogin" resultType="com.lkm.asking.entity.User">
+        select *from user
+        where password=#{password} and username=#{username}
+    </select>
+
+    <update id="updateUser" parameterType="com.lkm.asking.entity.User">
+        update user
+        set password=#{password},nickname=#{nickname},profile=#{profile},gender=#{gender}
+        where username=#{username}
+    </update>
+
+    <update id="updateAvater" parameterType="com.lkm.asking.entity.User">
+        update user
+        set avater=#{avater}
+        where username=#{username}
+    </update>
+
+    <select id="queryByUsername" resultType="com.lkm.asking.entity.User">
+        select * from user
+        where username=#{username}
+    </select>
+
+    <update id="updateQueCount" parameterType="com.lkm.asking.entity.User">
+        update user
+        set que_count=que_count+1
+        where username=#{username}
+    </update>
+
+    <update id="updateAnsCount" parameterType="com.lkm.asking.entity.User">
+        update user
+        set ans_count=ans_count+1
+        where username=#{username}
+    </update>
+
+    <update id="checkin" parameterType="com.lkm.asking.entity.User">
+        update user
+        set coin=coin+2,last_sign=#{date}
+        where username=#{username}
+    </update>
+
+    <select id="queryTime" resultType="java.lang.String">
+        select last_sign
+        from user
+        where username=#{username}
+    </select>
+
+    <select id="queryNickname" resultType="java.lang.String">
+        select nickname
+        from user
+        where username=#{username}
+    </select>
+
+    <select id="queryAvater" resultType="java.lang.String">
+        select avater
+        from user
+        where username=#{username}
+    </select>
+
+    <update id="addCoin" parameterType="com.lkm.asking.entity.User">
+        update user
+        set coin=coin+1
+        where username=#{username}
+    </update>
+
+    <update id="decCoin" parameterType="com.lkm.asking.entity.User">
+        update user
+        set coin=coin-1
+        where username=#{username}
+    </update>
+
+    <update id="updateInfo" parameterType="com.lkm.asking.entity.User">
+        update user
+        set que_count=#{queCount},ans_count=#{ansCount}
+        where username=#{username}
+    </update>
+
+    <select id="queryPassword" resultType="java.lang.String">
+        select password
+        from user
+        where username=#{username}
+    </select>
+
+    <select id="queryCoin" resultType="java.lang.Integer">
+        select coin from user
+        where username=#{username}
+    </select>
+
+
+
+</mapper>

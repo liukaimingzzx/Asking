@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lkm.asking.dao.QuestionDao">
+    <insert id="addQuestion" parameterType="com.lkm.asking.entity.Question">
+        insert into question (username, question_title, question_content, tag, nickname, user_avater)
+        values
+        (#{username},#{questionTitle},#{questionContent},#{tag},#{nickname},#{userAvater})
+    </insert>
+
+    <select id="listAll" resultType="com.lkm.asking.entity.Question">
+        select * from question
+    </select>
+    
+    <delete id="deleteQuestion" parameterType="com.lkm.asking.entity.Question">
+        delete from question
+        where question_id=#{questionId}
+    </delete>
+
+    <select id="queryQuestion" resultType="com.lkm.asking.entity.Question">
+        select * from question
+        where question_id=#{questionId}
+    </select>
+
+    <select id="listByUsername" resultType="com.lkm.asking.entity.Question">
+        select  * from question
+        where username=#{username}
+        order by question_id desc
+    </select>
+
+    <select id="searchQuestion" resultType="com.lkm.asking.entity.Question">
+        select  * from question
+        where question_title like CONCAT('%',#{index},'%')
+        order by question_id desc
+    </select>
+
+    <update id="addView" parameterType="com.lkm.asking.entity.Question">
+        update question
+        set question_view=question_view+1
+        where question_id=#{questionId}
+    </update>
+
+    <update id="addCommentNum" parameterType="com.lkm.asking.entity.Question">
+        update question
+        set comment_count = comment_count+1
+        where question_id=#{questionId}
+    </update>
+
+    <select id="countQuestion" resultType="java.lang.Integer">
+        select count(*) from question
+        where username=#{username}
+    </select>
+
+    <update id="decCommentNum" parameterType="com.lkm.asking.entity.Question">
+        update question
+        set comment_count = comment_count-1
+        where question_id=#{questionId}
+    </update>
+
+    <select id="findTitle" resultType="java.lang.String">
+        select question_title from question
+        where question_id=#{questionId}
+    </select>
+    
+</mapper>

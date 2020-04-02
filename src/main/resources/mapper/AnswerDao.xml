@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lkm.asking.dao.AnswerDao">
+    <insert id="addAnswer" parameterType="com.lkm.asking.entity.Answer">
+        insert into answer(question_id, answer_content, username, user_avater, nickname,question_title)
+        values
+        (#{questionId},#{answerContent},#{username},#{userAvater},#{nickname},#{questionTitle})
+    </insert>
+    
+    <select id="listAnswer" resultType="com.lkm.asking.entity.Answer">
+        select * from answer
+        where question_id=#{questionId}
+        order by answer_id desc
+    </select>
+
+    <select id="listMyAnswer" resultType="com.lkm.asking.entity.Answer">
+        select * from answer
+        where username=#{username}
+        order by answer_id desc
+    </select>
+
+    <update id="thumb" parameterType="com.lkm.asking.entity.Answer">
+        update answer
+        set thumb=thumb+1
+        where answer_id=#{answerId}
+    </update>
+
+    <delete id="deleteAnswer" parameterType="com.lkm.asking.entity.Answer">
+        delete from answer
+        where answer_id=#{answerId}
+    </delete>
+
+    <select id="countAnswer" resultType="java.lang.Integer">
+        select count(*) from answer
+        where username=#{username}
+    </select>
+
+    <select id="findQuestionId" resultType="java.lang.Integer">
+        select question_id from answer
+        where answer_id=#{answerId}
+    </select>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lkm.asking.dao.BoxAnswerDao">
+    <insert id="addBoxAnswer" parameterType="com.lkm.asking.entity.BoxAnswer">
+        insert into box_answer(box_id, box_acontent, username)
+        values (#{boxId},#{boxAcontent},#{username})
+    </insert>
+
+    <select id="listBoxAnswer" resultType="com.lkm.asking.entity.BoxAnswer">
+        select * from box_answer
+        where box_id=#{boxId}
+        order by box_aid desc
+    </select>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lkm.asking.dao.QuestionBoxDao">
+    <insert id="addQuestionBox" parameterType="com.lkm.asking.entity.QuestionBox">
+        insert into question_box(box_id, username, box_password, box_title, box_content,nickname,user_avater)
+        values (#{boxId},#{username},#{boxPassword},#{boxTitle},#{boxContent},#{nickname},#{userAvater})
+    </insert>
+
+    <select id="selectById" resultType="java.lang.Integer">
+        select count(*) from question_box
+        where box_id=#{boxId}
+    </select>
+
+    <select id="seeDetail" resultType="com.lkm.asking.entity.QuestionBox">
+        select * from question_box
+        where box_id=#{boxId}
+    </select>
+
+    <select id="listMyBox" resultType="com.lkm.asking.entity.QuestionBox">
+        select * from question_box
+        where username=#{username}
+        order by box_id desc
+    </select>
+
+    <delete id="deleteBox" parameterType="com.lkm.asking.entity.QuestionBox">
+        delete from question_box
+        where box_id=#{boxId}
+    </delete>
+
+    <update id="addCount" parameterType="com.lkm.asking.entity.QuestionBox">
+        update question_box
+        set box_count=box_content+1
+        where box_id=#{boxId}
+    </update>
+
+
+</mapper>
