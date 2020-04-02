@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lkm.asking.dao.UserDao">
     <insert id="insertUser" parameterType="com.lkm.asking.entity.User">
-        insert into user(username,nickname,password)
+        insert into user(username,nickname,password,avater)
         values
-        (#{username},#{nickname},#{password})
+        (#{username},#{nickname},#{password},#{avater})
     </insert>
 
     <select id="userLogin" resultType="com.lkm.asking.entity.User">
