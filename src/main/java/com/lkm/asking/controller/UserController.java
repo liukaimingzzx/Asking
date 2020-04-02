@@ -6,6 +6,7 @@ import com.lkm.asking.service.AnswerService;
 import com.lkm.asking.service.QuestionService;
 import com.lkm.asking.service.UserService;
 import com.lkm.asking.util.AvaterUtil;
+import com.lkm.asking.util.DefaultAvater;
 import com.lkm.asking.util.MD5Util;
 import javafx.beans.binding.ObjectExpression;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,6 +35,7 @@ public class UserController {
 
     Map<String,Object> modelMap = new HashMap<>();
     AvaterUtil avaterUtil = new AvaterUtil();
+    DefaultAvater defaultAvater = new DefaultAvater();
 
     @Autowired
     UserService userService;
@@ -49,11 +52,15 @@ public class UserController {
     @RequestMapping(value = "/register")
     public Map<String,Object>  insertUser(@RequestBody Map<String,Object> data){
         modelMap.clear();
+        String username = (String) data.get("username");
         User user = new User();
         user.setNickname((String) data.get("nickname"));
-        user.setUsername((String) data.get("username"));
+        user.setUsername(username);
         user.setPassword(MD5Util.MD5((String) data.get("password")));
-
+        File file = new File("D:\\intellijIDEA\\IDEAProjects\\Asking\\avaters\\default.jpg");
+        defaultAvater.avaterUpload(file,username);
+        String url = ip + "/user/avaters/" + username + "/" + username + ".jpg";
+        user.setAvater(url);
         User judge = userService.queryByUsername(user.getUsername());
         if(judge == null){
             int flag = userService.insertUser(user);
@@ -71,15 +78,22 @@ public class UserController {
     public Map<String,Object> updateAvater(@RequestParam("avater") MultipartFile file,
                                            @RequestParam("username") String username){
         modelMap.clear();
-        String imgUrl = avaterUtil.avaterUpload(file,username);
-        String webUrl = ip+"/user/avaters/"+username+"/"+file.getOriginalFilename();
-        int flag = userService.updateAvater(username,webUrl);
-        if(flag>0){
-            modelMap.put("errno",0);
-            modelMap.put("url",webUrl);
+        String fileName = file.getOriginalFilename();
+        String suffix = fileName.substring(fileName.lastIndexOf("."));
+        if(suffix.equals(".jpg")||suffix.equals(".JPG")) {
+            avaterUtil.avaterUpload(file, username);
+            String webUrl = ip + "/user/avaters/" + username + "/" + username + suffix;
+            int flag = userService.updateAvater(username, webUrl);
+            if (flag > 0) {
+                modelMap.put("errno", 0);
+                modelMap.put("url", webUrl);
+            } else {
+                modelMap.put("errno", -1);
+                modelMap.put("msg", "头像更新失败！");
+            }
         }else{
-            modelMap.put("errno",-1);
-            modelMap.put("msg","头像更新失败！");
+            modelMap.put("errno",1);
+            modelMap.put("msg","请上传以.jpg结尾的图片文件");
         }
         return modelMap;
 
