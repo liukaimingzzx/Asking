@@ -10,15 +10,17 @@ public class AvaterUtil {
     private String uploadFolder;
 
     //上传文件夹路径
-    String path;
+    private String path;
+    private String suffix;
 
-    public String avaterUpload(MultipartFile file,String username) {
+    public void avaterUpload(MultipartFile file,String username) {
         PathUtil(file,username);
-        return path+file.getOriginalFilename();
     }
 
     public void PathUtil(MultipartFile file,String username) {
         uploadFolder = "D:\\intellijIDEA\\IDEAProjects\\Asking\\avaters\\";
+        String fileName = file.getOriginalFilename();
+        suffix = fileName.substring(fileName.lastIndexOf("."));
         //uploadFolder = "/personal/files/asking/avaters/";
         path=uploadFolder+username+"\\";
         //path=uploadFolder+username+"/";
@@ -35,7 +37,7 @@ public class AvaterUtil {
         }
         try {
             BufferedOutputStream out = new BufferedOutputStream(
-                    new FileOutputStream(path + file.getOriginalFilename()));
+                    new FileOutputStream(path + username+suffix));
             out.write(file.getBytes());
             out.flush();
             out.close();
