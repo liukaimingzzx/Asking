@@ -1,5 +1,5 @@
 # Asking
-Asking 后端代码v1.0
+Asking 后端代码v1.0.2
 * 开发环境：IntelijIdea 2019.3
 * 开发语言：Java（使用springboot+mybtais框架）
 * 数据库：Mysql8.0
