@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lkm.asking.dao.QuestionDao">
     <insert id="addQuestion" parameterType="com.lkm.asking.entity.Question">
-        insert into question (username, question_title, question_content, tag, nickname, user_avater)
+        insert into question (username, question_title, question_content, tag, nickname, user_avater,img)
         values
-        (#{username},#{questionTitle},#{questionContent},#{tag},#{nickname},#{userAvater})
+        (#{username},#{questionTitle},#{questionContent},#{tag},#{nickname},#{userAvater},#{img})
     </insert>
 
     <select id="listAll" resultType="com.lkm.asking.entity.Question">

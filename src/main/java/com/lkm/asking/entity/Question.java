@@ -8,6 +8,7 @@ public class Question {
     private String questionTitle;
     private String questionContent;
     private String tag;
+    private String img;
     private String questionTime;
     private Integer questionView;
     private Integer commentCount;
@@ -90,5 +91,13 @@ public class Question {
 
     public void setUserAvater(String userAvater) {
         this.userAvater = userAvater;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

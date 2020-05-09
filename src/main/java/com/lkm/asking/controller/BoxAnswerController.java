@@ -27,6 +27,7 @@ public class BoxAnswerController {
     @ResponseBody
     @RequestMapping(value = "/add")
     public Map<String, Object> addBoxAnswer(@RequestBody Map<String, Object> data) {
+        modelMap.clear();
         BoxAnswer boxAnswer = new BoxAnswer();
         boxAnswer.setBoxAcontent((String) data.get("boxAcontent"));
         boxAnswer.setBoxId((Integer) data.get("boxId"));

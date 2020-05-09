@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.lkm</groupId>
     <artifactId>asking</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.3-Test</version>
     <name>asking</name>
     <description>Demo project for Spring Boot</description>
 

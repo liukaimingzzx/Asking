@@ -57,7 +57,7 @@ public class UserController {
         user.setNickname((String) data.get("nickname"));
         user.setUsername(username);
         user.setPassword(MD5Util.MD5((String) data.get("password")));
-        File file = new File("D:\\intellijIDEA\\IDEAProjects\\Asking\\avaters\\default.jpg");
+        File file = new File("/personal/files/asking/avaters/default.jpg");
         defaultAvater.avaterUpload(file,username);
         String url = ip + "/user/avaters/" + username + "/" + username + ".jpg";
         user.setAvater(url);
@@ -82,7 +82,7 @@ public class UserController {
         String suffix = fileName.substring(fileName.lastIndexOf("."));
         if(suffix.equals(".jpg")||suffix.equals(".JPG")) {
             avaterUtil.avaterUpload(file, username);
-            String webUrl = ip + "/user/avaters/" + username + "/" + username + suffix;
+            String webUrl = ip + "/user/avaters/" + username + "/" + username + suffix.toLowerCase();
             int flag = userService.updateAvater(username, webUrl);
             if (flag > 0) {
                 modelMap.put("errno", 0);

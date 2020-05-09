@@ -31,7 +31,7 @@
 
     <update id="addCount" parameterType="com.lkm.asking.entity.QuestionBox">
         update question_box
-        set box_count=box_content+1
+        set box_count=box_count+1
         where box_id=#{boxId}
     </update>
 

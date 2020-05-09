@@ -19,6 +19,8 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/user/avaters/**").addResourceLocations("file:D:/intellijIDEA/IDEAProjects/Asking/avaters/");
+        //registry.addResourceHandler("/user/avaters/**").addResourceLocations("file:D:/intellijIDEA/IDEAProjects/Asking/avaters/");
+        registry.addResourceHandler("/user/avaters/**").addResourceLocations("file:/personal/files/asking/avaters/");
+        registry.addResourceHandler("/question/img/**").addResourceLocations("file:/personal/files/asking/img/");
     }
 }

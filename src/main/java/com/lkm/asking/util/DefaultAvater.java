@@ -15,14 +15,14 @@ public class DefaultAvater {
     }
 
     public void PathU(File file,String username) {
-        uploadFolder = "D:\\intellijIDEA\\IDEAProjects\\Asking\\avaters\\";
+        //uploadFolder = "D:\\intellijIDEA\\IDEAProjects\\Asking\\avaters\\";
         String fileName = file.getName();
         suffix = fileName.substring(fileName.lastIndexOf("."));
-        //uploadFolder = "/personal/files/asking/avaters/";
-        path = uploadFolder + username + "\\";
-        //path=uploadFolder+username+"/";
-        String[] paths = path.split("\\\\");
-        //String[] paths = path.split("/");
+        uploadFolder = "/personal/files/asking/avaters/";
+        //path = uploadFolder + username + "\\";
+        path=uploadFolder+username+"/";
+        //String[] paths = path.split("\\\\");
+        String[] paths = path.split("/");
         StringBuffer fullPath = new StringBuffer();
         for (int i = 0; i < paths.length; i++) {
             //fullPath.append(paths[i]).append("\\");
@@ -60,7 +60,7 @@ public class DefaultAvater {
 
         try {
             BufferedOutputStream out = new BufferedOutputStream(
-                    new FileOutputStream(path + username+suffix));
+                    new FileOutputStream(path + username+suffix.toLowerCase()));
             out.write(bao.toByteArray());
             out.flush();
             out.close();
