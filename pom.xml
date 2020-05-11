@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.lkm</groupId>
     <artifactId>asking</artifactId>
-    <version>1.0.3-Test</version>
+    <version>1.0.4-Test</version>
     <name>asking</name>
     <description>Demo project for Spring Boot</description>
 
@@ -48,6 +48,11 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.10</version>
         </dependency>
     </dependencies>
 

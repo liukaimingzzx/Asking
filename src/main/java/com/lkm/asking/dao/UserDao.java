@@ -4,6 +4,8 @@ import com.lkm.asking.entity.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public interface UserDao {
     int insertUser(User user);
@@ -22,6 +24,8 @@ public interface UserDao {
     void decCoin(String username);
     void updateInfo(Integer queCount,Integer ansCount,String username);
     Integer queryCoin(String username);
+    List<User> listAll();
+    int deleteUser(String username);
 
 
 

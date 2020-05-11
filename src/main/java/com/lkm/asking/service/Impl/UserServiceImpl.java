@@ -6,6 +6,8 @@ import com.lkm.asking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -105,5 +107,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer queryCoin(String username) {
         return userDao.queryCoin(username);
+    }
+
+    @Override
+    public List<User> listAll() {
+        return userDao.listAll();
+    }
+
+    @Override
+    public int deleteUser(String username) {
+        int flag = userDao.deleteUser(username);
+        if(flag>0){
+            return 1;
+        }else{
+            throw new RuntimeException("删除失败！");
+        }
     }
 }

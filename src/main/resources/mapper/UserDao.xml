@@ -96,6 +96,14 @@
         where username=#{username}
     </select>
 
+    <select id="listAll" resultType="com.lkm.asking.entity.User">
+        select * from user
+    </select>
+    <delete id="deleteUser" parameterType="com.lkm.asking.entity.User">
+       delete from asking.user
+       where username=#{username}
+    </delete>
+
 
 
 </mapper>

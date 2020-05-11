@@ -45,7 +45,6 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public int deleteQuestion(Integer questionId) {
         int flag = questionDao.deleteQuestion(questionId);
-        System.out.println(flag);
         if(flag>0){
             return 1;
         }else{

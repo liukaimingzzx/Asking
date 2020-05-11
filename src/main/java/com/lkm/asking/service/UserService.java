@@ -2,6 +2,8 @@ package com.lkm.asking.service;
 
 import com.lkm.asking.entity.User;
 
+import java.util.List;
+
 public interface UserService {
     int insertUser(User user);
     User queryByUsername(String username);
@@ -19,6 +21,8 @@ public interface UserService {
     void decCoin(String username);
     void updateInfo(Integer queCount,Integer ansCount,String username);
     Integer queryCoin(String username);
+    List<User> listAll();
+    int deleteUser(String username);
 
 
 }
